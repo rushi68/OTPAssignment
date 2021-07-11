@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result</title>
+</head>
+
+<body>
+    <div style="height: 400px; background-color:lightblue;">
+        <p id="pp" style="font-size: 35px; "></p> <br><br>
+        <input type="number" id="otp">
+        <button onclick="otp()" id="btn">Confirm OTP</button> <br><br>
+        <a href="index.html" id="lin" style="visibility: hidden;">LogIn Page</a>
+    </div>
+    <script>
+        document.getElementById('pp').innerHTML = "Dear , "+ sessionStorage.getItem('name')+
+             "    Thank you for your enquiry.A 4 digit verification number has been sent to your phone number:  "+ sessionStorage.getItem('phone')+ "   please enter in the following box and submit for confirmation:";
+                var count=1;
+                var a=4;
+                var op=Math.floor(1000 + Math.random() * 9000);
+                document.onload = setTimeout(function () {  alert("Your Otp Is:-  " + op + "  You Have Only 4 Attempts "); },3000);
+               
+                function otp()
+                {
+                    var num=document.getElementById('otp').value;
+                    if(count<=3 && a>0)
+                    {
+                        if(num==op)
+                        {
+                            alert("Validation Succssfull!!");
+                        }
+                        else
+                        {
+                            count++;
+                            a--;
+                            alert("You enter Wrong OTP  Only "+ a + " Chances Are Left! ");
+                        }
+                    }
+                    else
+                    {
+                        alert("you enter Wrong Otp Please Redirect To Form");
+                        document.getElementById('btn').disabled= true;
+                        document.getElementById('otp').disabled= true;
+                        document.getElementById('lin').style.visibility="visible";
+                        
+
+                    }
+                }
+    </script>
+</body>
+</html>
